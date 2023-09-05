@@ -4,6 +4,7 @@ import Link from "next/link";
 import { collection, addDoc, Firestore } from "firebase/firestore"; 
 import { db, app } from "../../../firebase/firebase";
 import { ChangeEvent, FormEvent, useState } from "react";
+import Navbar from "@/components/navbar";
 
 
 
@@ -41,35 +42,32 @@ export default function createBlog() {
 
     return (
         <>
-        <header className="flex justify-between items-center mb-4">
-            <h1 className="text-2xl">Blogger's Blog</h1>
-        
-        </header>
+        <Navbar/>
         <div>
             <h2>Create New Blog Post</h2>
         </div>
 
-        <div className="container" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent:'center', minHeight:'100vh', width:'90%'}}>
+    <div className="container flex justify-center items-center" style={{ width: '90%' }}>
       
       <form >
-        <div>
+        <div className="text-center">
           <label>Title:</label>
           <input
             type="text"
             required
-            className="border border-slate-300 text-slate-300 px-2 py-1 rounded text-slate-300"
+            className="border border-slate-300 bg-transparent rounded px-2 py-1 outline-none focus-within:border-slate-100"
             style={{width:'100%', borderRadius:'5px'}}
             name="title"
             value={formData.title}
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="text-center">
           <label>Body:</label>
           <textarea
             required
-            className="border border-slate-300 text-slate-300 px-2 py-1 rounded"
-            style={{width:'150%', alignItems:'center', justifyContent:'center'}}
+            className="border border-slate-300 text-slate-300 px-2 py-1 rounded bg-transparent"
+            style={{width:'150%', alignItems:'center', justifyContent:'center', minHeight: '300px'}}
             name="body"
             value={formData.body}
             onChange={handleChange}

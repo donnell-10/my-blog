@@ -5,6 +5,7 @@ import Link from "next/link"
 import { collection, onSnapshot, DocumentData } from "firebase/firestore"; // Import Firestore functions
 import { db, app } from '../../firebase/firebase';
 import { useEffect, useState } from "react";
+import Navbar from '@/components/navbar';
 
 
 interface Blog {
@@ -42,25 +43,22 @@ export default function Home() {
   
   return (
     <>
-      <header className="flex justify-between items-center mb-4">
-      <h1 className="text-2xl">Blogger's Blog</h1>
-        <Link
-          className="border border-slate-300 text-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700 outline-none"
-          href="/createBlog"
-        >
-          New Blog
-        </Link>
-      </header>
-      <div>
-        <h2>Blog Titles</h2>
-        <ul className="pl-4 cursor-pointer peer-checked:line-through peer-checked:text-slate-500">
+    <div>
+      <Navbar></Navbar>
+      <div className='container'>
+        <h2 className="text-3xl font-semibold mb-4 ml-4">Today's Blogs</h2>
+        <ul className="list-disc pl-6">
           {blogTitles.map((blog) => (
-            <Link key={blog.id} href={`/blog2/${blog.id}`}>
-              {blog.title}
-            </Link>
+          <li key={blog.id} className='mt-2 text-3xl ml-4'>
+          <Link href={`/blog2/${blog.id}`}
+          className="text-blue-600 hover:underline">
+            {blog.title}
+          </Link>
+        </li>
           ))}
         </ul>
       </div>
+    </div>
     </>
   )
 }
