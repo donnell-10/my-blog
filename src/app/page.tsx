@@ -6,6 +6,7 @@ import { collection, onSnapshot, DocumentData } from "firebase/firestore"; // Im
 import { db, app } from '../../firebase/firebase';
 import { useEffect, useState } from "react";
 import Navbar from '@/components/navbar';
+import BlogCard from '@/components/BlogCard';
 
 
 interface Blog {
@@ -45,20 +46,26 @@ export default function Home() {
     <>
     <div>
       <Navbar></Navbar>
-      <div className='container'>
-        <h2 className="text-3xl font-semibold mb-4 ml-4">Today's Blogs</h2>
-        <ul className="list-disc pl-6">
-          {blogTitles.map((blog) => (
-          <li key={blog.id} className='mt-2 text-3xl ml-4'>
-          <Link href={`/blog2/${blog.id}`}
-          className="text-blue-600 hover:underline">
-            {blog.title}
-          </Link>
-        </li>
-          ))}
+      <div className='container min-h-screen'>
+        <h2 className="text-3xl font-semibold mb-4 ml-4 text-black">Today's Blogs</h2>
+        <div className='flex'>
+                  <ul className=" pl-6 flex gap-4">
+        {blogTitles.map((blog) => (
+          <BlogCard key={blog.id} title={blog.title} id ={blog.id} />
+        ))}
+
         </ul>
+        </div>
+
       </div>
     </div>
     </>
   )
 }
+
+          // <li key={blog.id} className='mt-2 text-3xl ml-4'>
+            //   <Link href={`/blog2/${blog.id}`}
+            //   className="text-blue-600 hover:underline">
+            //     {blog.title}
+            //   </Link>
+            // </li>
