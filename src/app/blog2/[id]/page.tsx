@@ -80,25 +80,26 @@ export default function BlogPost() {
   return (
     <>
       <Navbar/>
-      <div>
-        <h2 className='text-7xl font-sans ml-4 text-black' >{blog.title}</h2>
-        
-      </div> 
-      <div className='mt-5'>
-        <p className='border ml-4 mr-4 text-black' style={{borderRadius:'5px'}}>
-          {blog.body}
-        </p>
-      </div>
-      <div className="flex gap-1 justify-end mr-4">
-        <button className='mt-5 border border-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700 text-black' 
-        onClick={handleEdit}>
-          Edit
-        </button>
-        <button className='mt-5 ml-5 border text-black border-slate-300 px-2 py-1 rounded hover:bg-slate-700 focus-within:bg-slate-700'
-        onClick={handleDelete}>
-          Delete
-        </button>
-      </div>
+        <div className='flex gap-4 items-baseline'>
+          <h2 className='text-7xl font-sans ml-4 text-black' >{blog.title}</h2>
+          <p className='text-[18px]'>by author</p>          
+        </div> 
+        <div className='mt-10 flex justify-center'>
+          <p className='border w-4/5 ml-4 mr-4 p-3 text-black' style={{borderRadius:'5px'}}>
+            {blog.body}
+          </p>
+        </div>
+        <div className="flex gap-1 justify-end mr-4">
+          <button className='mt-5 border border-slate-300 px-2 py-1 rounded hover:bg-green-300  text-black' 
+          onClick={handleEdit}>
+            Edit
+          </button>
+          <button className='mt-5 ml-5 border text-black border-slate-300 px-2 py-1 rounded hover:bg-red-500 focus-within:bg-slate-700'
+          onClick={handleDelete}>
+            Delete
+          </button>
+        </div>
+  
 
     </>
   )
