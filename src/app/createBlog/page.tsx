@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client';
 
 import Link from "next/link";
@@ -9,11 +10,12 @@ import Navbar from "@/components/navbar";
 
 
 export default function createBlog() {
-    const [formData, setFormData] = useState<{ title: string; body: string }>({
+    const [formData, setFormData] = useState<{ title: string; body: string; category: string }>({
         title: "",
         body: "",
+        category: ""
       });
-      const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
       };
@@ -32,7 +34,7 @@ export default function createBlog() {
           await addDoc(blogPostsCollection, formData);
     
           alert("Blog post created successfully!");
-          setFormData({ title: "", body: "" }); // Clear the form
+          setFormData({ title: "", body: "", category: "" }); // Clear the form
         } catch (error) {
           console.error("Error adding document: ", error);
         }
@@ -62,6 +64,20 @@ export default function createBlog() {
             onChange={handleChange}
           />
         </div>
+        <div>
+          <select className="select select-bordered bg-transparent border-black w-full max-w-xs" name="category" required value={formData.category} onChange={handleChange}>
+            <option disabled selected>Select A Category</option>
+            <option value="books">Books</option>
+            <option value="sports">Sports</option>
+            <option value="lifestyle">Lifestyle</option>
+            <option value="food">Food</option>
+            <option value="travel">Travel</option>
+            <option value="tech">Technology</option>
+          </select>
+        </div>
+
+
+    
         <div className="text-center">
           <label>Body:</label>
           <textarea
